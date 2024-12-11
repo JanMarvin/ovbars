@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# openxlsx2
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/JanMarvin/ovbars/workflows/R-CMD-check/badge.svg)](https://github.com/JanMarvin/openxlsx2/actions)
+[![r-universe](https://janmarvin.r-universe.dev/badges/openxlsx2)](https://janmarvin.r-universe.dev/ovbars)
+<!-- badges: end -->
+
+This R package allows using the `ovba` rust library to read the `vbaProject.bin` file which is included in the `xlsm` files as defined by the Office Open XML standard. The macro code is embedded in a binary OVBA file. This is readable via `ovbars`.
+
+```{r}
+fl <- "https://github.com/JanMarvin/openxlsx-data/raw/refs/heads/main/gh_issue_416.xlsm"
+wb <- openxlsx2::wb_load(fl)
+vba <- wb$vbaProject
+
+code <- ovbars::ovbar_out(name = vba)
+message(code["Sheet1"])
+
+ovbars::ovbar_meta(name = vba)
+```
+
+## License
+
+This package is licensed under the MIT license. At the moment it bundles the [`ovba`](https://github.com/tim-weis/ovba) library, which is released under the MIT License Copyright (c) 2020 Tim Weis. 
