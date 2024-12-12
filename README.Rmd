@@ -33,6 +33,14 @@ message(code["Sheet1"])
 ovbars::ovbar_meta(name = vba)
 ```
 
+## Development
+```r
+# document code
+rextendr::document()
+# update vendored packages
+rextendr::vendor_pkgs()
+```
+
 ## License
 
-This package is licensed under the MIT license. At the moment it bundles the [`ovba`](https://github.com/tim-weis/ovba) library, which is released under the MIT License Copyright (c) 2020 Tim Weis. 
+This package is licensed under the MIT license. At the moment it bundles a patched version of the [`ovba`](https://github.com/tim-weis/ovba) library, which is released under the MIT License Copyright (c) 2020 Tim Weis.

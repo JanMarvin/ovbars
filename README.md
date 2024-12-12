@@ -77,5 +77,6 @@ ovbars::ovbar_meta(name = vba)
 ## License
 
 This package is licensed under the MIT license. At the moment it bundles
-the [`ovba`](https://github.com/tim-weis/ovba) library, which is
-released under the MIT License Copyright (c) 2020 Tim Weis.
+a patched version of the [`ovba`](https://github.com/tim-weis/ovba)
+library, which is released under the MIT License Copyright (c) 2020 Tim
+Weis.

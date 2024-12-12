@@ -18,4 +18,4 @@ Suggests:
     openxlsx2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-SystemRequirements: Rust 'cargo'
+SystemRequirements: Cargo (Rust's package manager), rustc
