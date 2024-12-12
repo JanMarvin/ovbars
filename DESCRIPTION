@@ -12,7 +12,7 @@ BugReports: https://github.com/JanMarvin/ovbars/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Config/rextendr/version: 0.3.1
+Config/rextendr/version: 0.3.1.9001
 RoxygenNote: 7.3.2
 Suggests: 
     openxlsx2,

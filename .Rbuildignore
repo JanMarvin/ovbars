@@ -4,5 +4,8 @@
 ^README.Rmd$
 ^.github$
 ^.lintr$
-^src/rust/vendor/.*\.cargo-checksum\.json$
-^src/rust/vendor/nom/.travis.yml$
+^src/rust/patched-crates/.*\.cargo-checksum\.json$
+^src/rust/vendor$
+^src/\.cargo$
+^src/Makevars$
+^src/Makevars\.win$
