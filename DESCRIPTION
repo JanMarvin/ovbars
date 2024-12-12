@@ -7,6 +7,8 @@ Authors@R: c(
   person("Jan Marvin", "Garbuszus", email = "jan.garbuszus@ruhr-uni-bochum.de", role = c("aut", "cre"))
   )
 Description: Allows to read the contents of vba binary files. These files contain macro code embedded in Office Open XML.
+URL: https://janmarvin.github.io/ovbars/
+BugReports: https://github.com/JanMarvin/ovbars/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
