@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/JanMarvin/ovbars/workflows/R-CMD-check/badge.svg)](https://github.com/JanMarvin/openxlsx2/actions)
-[![r-universe](https://janmarvin.r-universe.dev/badges/openxlsx2)](https://janmarvin.r-universe.dev/ovbars)
+[![R-CMD-check](https://github.com/JanMarvin/ovbars/workflows/R-CMD-check/badge.svg)](https://github.com/JanMarvin/ovbars/actions)
+[![r-universe](https://janmarvin.r-universe.dev/badges/ovbars)](https://janmarvin.r-universe.dev/ovbars)
 <!-- badges: end -->
 
 This R package allows using the `ovba` rust library to read the
