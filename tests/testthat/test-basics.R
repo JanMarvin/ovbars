@@ -10,11 +10,20 @@ test_that("loading files work", {
   got <- ovbars::ovbar_out(name = vba)
   expect_equal(exp, got)
 
-  exp <- list(PROJECT = "/PROJECT", PROJECTwm = "/PROJECTwm", `Root Entry` = "/",
-              Sheet1 = "/VBA/Sheet1", Sheet2 = "/VBA/Sheet2", ThisWorkbook = "/VBA/ThisWorkbook",
-              VBA = "/VBA", `_VBA_PROJECT` = "/VBA/_VBA_PROJECT", `__SRP_0` = "/VBA/__SRP_0",
-              `__SRP_1` = "/VBA/__SRP_1", `__SRP_2` = "/VBA/__SRP_2", `__SRP_3` = "/VBA/__SRP_3",
-              dir = "/VBA/dir")
+  if (Sys.info()[["sysname"]] == "Windows") {
+    exp <- list(PROJECT = "/PROJECT", PROJECTwm = "/PROJECTwm", `Root Entry` = "/",
+                Sheet1 = "/VBA\\Sheet1", Sheet2 = "/VBA\\Sheet2", ThisWorkbook = "/VBA\\ThisWorkbook",
+                VBA = "/VBA", `_VBA_PROJECT` = "/VBA\\_VBA_PROJECT", `__SRP_0` = "/VBA\\__SRP_0",
+                `__SRP_1` = "/VBA\\__SRP_1", `__SRP_2` = "/VBA\\__SRP_2", `__SRP_3` = "/VBA\\__SRP_3",
+                dir = "/VBA\\dir")
+  } else {
+    exp <- list(PROJECT = "/PROJECT", PROJECTwm = "/PROJECTwm", `Root Entry` = "/",
+                Sheet1 = "/VBA/Sheet1", Sheet2 = "/VBA/Sheet2", ThisWorkbook = "/VBA/ThisWorkbook",
+                VBA = "/VBA", `_VBA_PROJECT` = "/VBA/_VBA_PROJECT", `__SRP_0` = "/VBA/__SRP_0",
+                `__SRP_1` = "/VBA/__SRP_1", `__SRP_2` = "/VBA/__SRP_2", `__SRP_3` = "/VBA/__SRP_3",
+                dir = "/VBA/dir")
+
+  }
   got <- ovbars::ovbar_meta(name = vba)
   expect_equal(exp, got)
 
