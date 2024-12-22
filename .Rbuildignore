@@ -5,7 +5,8 @@
 ^.github$
 ^.lintr$
 ^src/rust/patched-crates/.*\.cargo-checksum\.json$
-^src/rust/vendor$
+^src/vendor$
 ^src/\.cargo$
 ^src/Makevars$
 ^src/Makevars\.win$
+^src/rust/target$

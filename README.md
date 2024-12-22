@@ -78,7 +78,8 @@ ovbars::ovbar_meta(name = vba)
 
 ``` r
 # document code
-rextendr::document()
+savvy::savvy_update()
+devtools::document()
 # update vendored packages
 rextendr::vendor_pkgs()
 ```
