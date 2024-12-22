@@ -74,6 +74,15 @@ ovbars::ovbar_meta(name = vba)
 #> [1] "/VBA/dir"
 ```
 
+## Development
+
+``` r
+# document code
+rextendr::document()
+# update vendored packages
+rextendr::vendor_pkgs()
+```
+
 ## License
 
 This package is licensed under the MIT license. At the moment it bundles
