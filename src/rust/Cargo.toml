@@ -1,7 +1,7 @@
 [package]
 name = 'ovbars'
 publish = false
-version = '0.1.1'
+version = '0.1.2'
 edition = '2021'
 
 [lib]
@@ -10,4 +10,4 @@ name = 'ovbars'
 
 [dependencies]
 extendr-api = '*'
-ovba = '0.7.0'
+ovba = '0.7.1'
