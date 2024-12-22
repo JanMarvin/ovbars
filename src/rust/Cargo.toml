@@ -1,16 +1,13 @@
 [package]
 name = 'ovbars'
 publish = false
-version = '0.1.0'
+version = '0.1.1'
 edition = '2021'
 
 [lib]
 crate-type = [ 'staticlib' ]
 name = 'ovbars'
 
-[patch.crates-io]
-ovba = { path = "patched-crates/ovba" }
-
 [dependencies]
 extendr-api = '*'
-ovba = "0.5.1"
+ovba = { git = "https://github.com/tim-weis/ovba", branch = "feature/path_sep" }

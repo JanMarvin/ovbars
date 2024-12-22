@@ -121,7 +121,8 @@ checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
 
 [[package]]
 name = "ovba"
-version = "0.5.1"
+version = "0.6.0"
+source = "git+https://github.com/tim-weis/ovba?branch=feature%2Fpath_sep#63fe7b4c8e85e56681df75aa3e8bee6b041ea0e0"
 dependencies = [
  "cfb",
  "codepage",
@@ -131,7 +132,7 @@ dependencies = [
 
 [[package]]
 name = "ovbars"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "extendr-api",
  "ovba",
