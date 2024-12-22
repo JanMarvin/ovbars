@@ -3,10 +3,12 @@ use ovba::{open_project};
 use savvy::savvy;
 use savvy::{OwnedStringSexp, OwnedListSexp, Sexp, Result};
 
-use std::fs::{read}; // write
-use std::collections::HashMap;
+use std::fs::{read};
 
-fn as_sexp(map: HashMap<String, String>) -> Result<Sexp> {
+extern crate alloc;
+use alloc::collections::BTreeMap;
+
+fn as_sexp(map: BTreeMap<String, String>) -> Result<Sexp> {
     let mut list = OwnedListSexp::new(map.len(), true)?;
 
     // Convert HashMap to a vector of tuples and sort by the key (String)
@@ -31,7 +33,7 @@ fn ovbar_out(name: &str) -> savvy::Result<savvy::Sexp> {
     let data = read(name)?;
     let project = open_project(data)?;
 
-    let mut map = HashMap::new();
+    let mut map = BTreeMap::new();
     for module in &project.modules {
         let src_code_u8 = project.module_source_raw(&module.name)?;
         let src_code = String::from_utf8(src_code_u8.clone()).unwrap_or_else(|_| String::from("Invalid UTF-8"));
@@ -56,7 +58,7 @@ fn ovbar_meta(name: &str) -> savvy::Result<savvy::Sexp> {
     let project = open_project(data)?;
 
 
-    let mut map = HashMap::new();
+    let mut map = BTreeMap::new();
     // Iterate over CFB entries
     for (nm, path) in project.list()? {
         map.insert(nm, path);
