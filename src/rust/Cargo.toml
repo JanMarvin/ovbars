@@ -12,9 +12,6 @@ crate-type = ["staticlib", "lib"]
 savvy = "*"
 ovba = '0.7.1'
 
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-compiler_builtins = '0.1.139'
-
 [profile.release]
 # By default, on release build, savvy terminates the R session when a panic
 # occurs. This is the right behavior in that a panic means such a fatal event

@@ -44,12 +44,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "compiler_builtins"
-version = "0.1.139"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7925a77545f37a18e152a4aeaeb9a220309022067cafcfa2ecebe9ec55d36ccb"
-
-[[package]]
 name = "encoding_rs"
 version = "0.8.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -108,7 +102,6 @@ dependencies = [
 name = "ovbars"
 version = "0.1.3"
 dependencies = [
- "compiler_builtins",
  "ovba",
  "savvy",
 ]
