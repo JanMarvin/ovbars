@@ -10,4 +10,4 @@ name = 'ovbars'
 
 [dependencies]
 extendr-api = '*'
-ovba = { git = "https://github.com/tim-weis/ovba", branch = "feature/path_sep" }
+ovba = '0.7.0'
