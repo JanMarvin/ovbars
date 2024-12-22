@@ -3,6 +3,6 @@
 .Rhistory
 .RData
 .Ruserdata
-src/rust/vendor
+src/vendor
 src/Makevars
 src/Makevars.win
