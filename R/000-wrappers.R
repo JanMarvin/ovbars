@@ -37,18 +37,21 @@ NULL
   stop(class, " cannot be modified", call. = FALSE)
 }
 
-#' Returns a list of macro sources found in the vba binary.
-#' The list is sorted alphabetically.
+#' `ovbars` allows to parse the OVBA file `vbaProject.bin` which contains
+#' macro variables in Office Open XML files
+#'
+#' `ovbar_out()`: Returns a list of macro sources found in the vba binary.
+#' `ovbar_meta()`: Returns a list of additional meta data of directories found
+#' in the vba binary. The latter is probably not useful for the user.
+#' @name ovba
 #' @param name the path to the input file
+#' @returns A named list with character strings. The list is sorted alphabetically.
 #' @export
 `ovbar_out` <- function(`name`) {
   .Call(savvy_ovbar_out__impl, `name`)
 }
 
-#' Returns a list of additional meta data of directories found in the vba
-#' binary. This is probably not useful for the user.
-#' The list is sorted alphabetically.
-#' @param name the path to the input file
+#' @rdname ovba
 #' @export
 `ovbar_meta` <- function(`name`) {
   .Call(savvy_ovbar_meta__impl, `name`)

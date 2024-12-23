@@ -24,9 +24,15 @@ fn as_sexp(map: BTreeMap<String, String>) -> Result<Sexp> {
     Ok(list.into())
 }
 
-/// Returns a list of macro sources found in the vba binary.
-/// The list is sorted alphabetically.
+/// `ovbars` allows to parse the OVBA file `vbaProject.bin` which contains
+/// macro variables in Office Open XML files
+///
+/// `ovbar_out()`: Returns a list of macro sources found in the vba binary.
+/// `ovbar_meta()`: Returns a list of additional meta data of directories found
+/// in the vba binary. The latter is probably not useful for the user.
+/// @name ovba
 /// @param name the path to the input file
+/// @returns A named list with character strings. The list is sorted alphabetically.
 /// @export
 #[savvy]
 fn ovbar_out(name: &str) -> savvy::Result<savvy::Sexp> {
@@ -46,10 +52,7 @@ fn ovbar_out(name: &str) -> savvy::Result<savvy::Sexp> {
     Ok(list)
 }
 
-/// Returns a list of additional meta data of directories found in the vba
-/// binary. This is probably not useful for the user.
-/// The list is sorted alphabetically.
-/// @param name the path to the input file
+/// @rdname ovba
 /// @export
 #[savvy]
 fn ovbar_meta(name: &str) -> savvy::Result<savvy::Sexp> {

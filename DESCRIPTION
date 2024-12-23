@@ -13,6 +13,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
 Suggests: 
     openxlsx2,
     testthat (>= 3.0.0)
