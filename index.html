@@ -67,13 +67,19 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>This R package allows using the <code>ovba</code> rust library to read the <code>vbaProject.bin</code> file which is included in the <code>xlsm</code> files as defined by the Office Open XML standard. The macro code is embedded in a binary OVBA file. This is readable via <code>ovbars</code>.</p>
+<p>In the Office Open XML standard, files with the <code>.xlsm</code> extension indicate that the workbook contains macros. When loading these files using R packages, the macro code is not directly visible as it is embedded in a file named <code>vbaProject.bin</code>.</p>
+<p>This R package serves as a wrapper around the <code>ovba</code> Rust library, enabling the parsing of the <code>vbaProject.bin</code> file. You can extract the <code>vbaProject.bin</code> file by unzipping the XLSM file or by using the <code>openxlsx2</code> package, as demonstrated in the example below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/JanMarvin/openxlsx-data/raw/refs/heads/main/gh_issue_416.xlsm"</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">::</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html" class="external-link">wb_load</a></span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span>
-<span><span class="va">vba</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="va">vbaProject</span></span>
+<code class="sourceCode R"><span><span class="co">## an example xlsm file</span></span>
+<span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="st">"https://janmarvin.github.io/openxlsx-data/gh_issue_416.xlsm"</span></span>
 <span></span>
-<span><span class="va">code</span> <span class="op">&lt;-</span> <span class="fu">ovbars</span><span class="fu">::</span><span class="fu"><a href="reference/ovbar_out.html">ovbar_out</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">vba</span><span class="op">)</span></span>
+<span><span class="co">## get the path to the vba file</span></span>
+<span><span class="va">vba</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">::</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html" class="external-link">wb_load</a></span><span class="op">(</span><span class="va">fl</span><span class="op">)</span><span class="op">$</span><span class="va">vbaProject</span></span>
+<span></span>
+<span><span class="co">## extract the macro code</span></span>
+<span><span class="va">code</span> <span class="op">&lt;-</span> <span class="fu">ovbars</span><span class="fu">::</span><span class="fu"><a href="reference/ovba.html">ovbar_out</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">vba</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## access the code from "Sheet1"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="va">code</span><span class="op">[</span><span class="st">"Sheet1"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Attribute VB_Name = "Sheet1"</span></span>
 <span><span class="co">#&gt; Attribute VB_Base = "0{00020820-0000-0000-C000-000000000046}"</span></span>
@@ -85,9 +91,12 @@
 <span><span class="co">#&gt; Attribute VB_Customizable = True</span></span>
 <span><span class="co">#&gt; Private Sub Worksheet_SelectionChange(ByVal Target As Range)</span></span>
 <span><span class="co">#&gt;     #donothing</span></span>
-<span><span class="co">#&gt; End Sub</span></span>
-<span></span>
-<span><span class="fu">ovbars</span><span class="fu">::</span><span class="fu"><a href="reference/ovbar_meta.html">ovbar_meta</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">vba</span><span class="op">)</span></span>
+<span><span class="co">#&gt; End Sub</span></span></code></pre></div>
+<p>This view differs from what you might be accustomed to in spreadsheet software, as it includes additional information typically used internally by the software. Lines starting with <code>Attribute</code> are entirely hidden.</p>
+<p>Similarly, this project allows the extraction of additional information regarding the file system of the OVBA file.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## additional meta information regarding the OVBA file system</span></span>
+<span><span class="fu">ovbars</span><span class="fu">::</span><span class="fu"><a href="reference/ovba.html">ovbar_meta</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">vba</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $PROJECT</span></span>
 <span><span class="co">#&gt; [1] "/PROJECT"</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -129,7 +138,7 @@
 <div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># document code</span></span>
 <span><span class="fu">savvy</span><span class="fu">::</span><span class="fu">savvy_update</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
