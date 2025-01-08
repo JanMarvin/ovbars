@@ -42,7 +42,12 @@ fn ovbar_out(name: &str) -> savvy::Result<savvy::Sexp> {
     let mut map = BTreeMap::new();
     for module in &project.modules {
         let src_code_u8 = project.module_source_raw(&module.name)?;
-        let src_code = String::from_utf8(src_code_u8.clone()).unwrap_or_else(|_| String::from("Invalid UTF-8"));
+        let src_code = match String::from_utf8(src_code_u8.clone()) {
+            Ok(valid_utf8) => valid_utf8,
+            Err(_) => {
+                src_code_u8.iter().map(|&b| b as char).collect()
+            }
+        };
 
         map.insert(module.name.clone(), src_code);
     }
