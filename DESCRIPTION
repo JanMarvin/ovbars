@@ -1,7 +1,7 @@
 Package: ovbars
 Type: Package
 Title: Accesses the 'ovba' rust library to extract vba binary files
-Version: 0.1.4
+Version: 0.1.5
 Language: en-US
 Authors@R: c(
   person("Jan Marvin", "Garbuszus", email = "jan.garbuszus@ruhr-uni-bochum.de", role = c("aut", "cre"))
