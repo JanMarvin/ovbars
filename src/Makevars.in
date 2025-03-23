@@ -12,7 +12,7 @@ PKG_LIBS = -L$(LIBDIR) -lovbars
 
 CARGO_BUILD_ARGS = --lib --profile $(PROFILE) --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
 
-all: C_clean
+all: $(SHLIB) cleanup
 
 $(SHLIB): $(STATLIB)
 
@@ -50,8 +50,5 @@ $(STATLIB):
 			rm -Rf "$(CARGOTMP)" "$(VENDOR_DIR)" "$(LIBDIR)/build"; \
 		fi
 
-C_clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
-
-clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target
+cleanup: $(SHLIB)
+	rm -Rf $(STATLIB) rust/target

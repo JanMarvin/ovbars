@@ -14,7 +14,7 @@ PKG_LIBS = -L$(LIBDIR) -lovbars -lws2_32 -ladvapi32 -luserenv -lbcrypt -lntdll
 # to overwrite it via configuration.
 CARGO_LINKER = x86_64-w64-mingw32.static.posix-gcc.exe
 
-all: C_clean
+all: $(SHLIB) cleanup
 
 $(SHLIB): $(STATLIB)
 
@@ -49,8 +49,5 @@ $(STATLIB):
 		rm -Rf "$(CARGOTMP)" "$(VENDOR_DIR)" "$(LIBDIR)/build"; \
 	fi
 
-C_clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
-
-clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target
+cleanup: $(SHLIB)
+	rm -Rf $(STATLIB) rust/target
