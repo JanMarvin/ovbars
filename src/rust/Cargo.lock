@@ -10,9 +10,9 @@ checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
 
 [[package]]
 name = "cc"
-version = "1.2.17"
+version = "1.2.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1fcb57c740ae1daf453ae85f16e37396f672b039e00d9d866e07ddb24e328e3a"
+checksum = "8e3a13707ac958681c13b39b458c073d0d9bc8a22cb1b2f4c8e55eb72c13f362"
 dependencies = [
  "shlex",
 ]
@@ -102,9 +102,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.94"
+version = "1.0.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a31971752e70b8b2686d7e46ec17fb38dad4051d94024c88df49b667caea9c84"
+checksum = "02b3e5e68a3a1a02aad3ec490a98007cbc13c37cbe84a3cd7b8e406d76e7f778"
 dependencies = [
  "unicode-ident",
 ]
@@ -126,9 +126,9 @@ checksum = "eded382c5f5f786b989652c49544c4877d9f015cc22e145a5ea8ea66c2921cd2"
 
 [[package]]
 name = "savvy"
-version = "0.8.8"
+version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "756baa5179a4959c0cff23ce685a5618affd5f6abe4de321b908789b2599348c"
+checksum = "4385e59bbe257ca97bd01ec6b68c070bc3773c7345118808d603a7cd12814437"
 dependencies = [
  "cc",
  "rustversion",
@@ -138,9 +138,9 @@ dependencies = [
 
 [[package]]
 name = "savvy-bindgen"
-version = "0.8.8"
+version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d26980d4bd6623bbea28567be980d5925954bd9d317f9ea62413838df11ba3e"
+checksum = "9d6d5d9f94a22af3e689a105520b5de153a7d7f1d40fd23803f35d793c5c7d4e"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -149,15 +149,15 @@ dependencies = [
 
 [[package]]
 name = "savvy-ffi"
-version = "0.8.8"
+version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "805f561ddd10ad204f6f75df1deba1ea244c355d2be24e6c587356297c4ff383"
+checksum = "03c32b3e7d6ef893fd9b105f6a916a2afd4654b8a41322263db4bf508e252554"
 
 [[package]]
 name = "savvy-macro"
-version = "0.8.8"
+version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a6b2104e4615d1d5409bed7aaf8a5e58efd80fa6c243c8af039f68af7f3b9fed"
+checksum = "20053f171bbb1e41ed4d6c23b1a8fb6c87816c217e355c19c3fc6c7e51b37cb6"
 dependencies = [
  "proc-macro2",
  "quote",
