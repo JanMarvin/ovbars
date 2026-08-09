@@ -28,7 +28,21 @@ else
   PROFILE=release
 fi
 
+# Cargo target triple matching the active R toolchain. Windows arm64 R
+# (aarch64-w64-mingw32) uses the LLVM/clang-based Rtools toolchain, which
+# maps to the Rust "gnullvm" targets rather than the classic mingw-w64 "gnu"
+# ones used on x86_64/i386.
+TARGET="$("${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" -e '
+  if (grepl("aarch", R.version$platform)) {
+    cat("aarch64-pc-windows-gnullvm")
+  } else if (grepl("i386", R.version$platform)) {
+    cat("i686-pc-windows-gnu")
+  } else {
+    cat("x86_64-pc-windows-gnu")
+  }
+')"
+
 sed \
-  -e "s/@TARGET@/x86_64-pc-windows-gnu/" \
+  -e "s/@TARGET@/${TARGET}/" \
   -e "s/@PROFILE@/${PROFILE}/" \
   src/Makevars.win.in > src/Makevars.win

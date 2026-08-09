@@ -10,10 +10,6 @@ LIBDIR = $(TARGET_DIR)/$(TARGET)/$(subst dev,debug,$(PROFILE))
 STATLIB = $(LIBDIR)/libovbars.a
 PKG_LIBS = -L$(LIBDIR) -lovbars -lws2_32 -ladvapi32 -luserenv -lbcrypt -lntdll
 
-# Rtools doesn't have the linker in the location that cargo expects, so we need
-# to overwrite it via configuration.
-CARGO_LINKER = x86_64-w64-mingw32.static.posix-gcc.exe
-
 all: $(SHLIB) cleanup
 
 $(SHLIB): $(STATLIB)
@@ -38,9 +34,8 @@ $(STATLIB):
 		export CARGO_HOME="$(CARGOTMP)"; \
 		export CARGO_BUILD_JOBS=2; \
 	fi && \
-	export CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER="$(CARGO_LINKER)" && \
+	export CC="$(CC)" && \
 	  export LIBRARY_PATH="$${LIBRARY_PATH};$(LIBDIR)/libgcc_mock" && \
-	  export CC="$(CC)" && \
 	  export CFLAGS="$(CFLAGS)" && \
 	  export RUSTFLAGS="$(RUSTFLAGS)" && \
 	  cargo build --target $(TARGET) --lib --profile $(PROFILE) --manifest-path ./rust/Cargo.toml --target-dir $(TARGET_DIR)
