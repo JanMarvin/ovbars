@@ -1,24 +1,18 @@
-use ovba::{open_project};
+use ovba::open_project;
 
 use savvy::savvy;
 use savvy::{OwnedStringSexp, OwnedListSexp, Sexp, Result};
 
-use std::fs::{read};
-
-extern crate alloc;
-use alloc::collections::BTreeMap;
+use std::collections::BTreeMap;
+use std::fs::read;
 
 fn as_sexp(map: BTreeMap<String, String>) -> Result<Sexp> {
     let mut list = OwnedListSexp::new(map.len(), true)?;
 
-    // Convert HashMap to a vector of tuples and sort by the key (String)
-    let mut sorted_entries: Vec<_> = map.iter().collect();
-    sorted_entries.sort_by(|a, b| a.0.cmp(b.0)); // Sort by key (String)
-
-    for (index, (key, value)) in sorted_entries.iter().enumerate() {
+    for (index, (key, value)) in map.iter().enumerate() {
         let mut str = OwnedStringSexp::new(1)?;
         str.set_elt(0, value)?;
-        list.set_name_and_value(index, key, str)?; // Correct method call
+        list.set_name_and_value(index, key, str)?;
     }
 
     Ok(list.into())
@@ -41,13 +35,7 @@ fn ovbar_out(name: &str) -> savvy::Result<savvy::Sexp> {
 
     let mut map = BTreeMap::new();
     for module in &project.modules {
-        let src_code_u8 = project.module_source_raw(&module.name)?;
-        let src_code = match String::from_utf8(src_code_u8.clone()) {
-            Ok(valid_utf8) => valid_utf8,
-            Err(_) => {
-                src_code_u8.iter().map(|&b| b as char).collect()
-            }
-        };
+        let src_code = project.module_source(&module.name)?;
 
         map.insert(module.name.clone(), src_code);
     }
@@ -64,7 +52,6 @@ fn ovbar_meta(name: &str) -> savvy::Result<savvy::Sexp> {
     // Read raw project container
     let data = read(name)?;
     let project = open_project(data)?;
-
 
     let mut map = BTreeMap::new();
     // Iterate over CFB entries
